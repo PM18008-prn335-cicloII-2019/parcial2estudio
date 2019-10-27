@@ -49,6 +49,11 @@
                     <p:column headerText="Activo">
                         <h:outputText value="#{g.activo?'Activo':'Inactivo'}"/>
                     </p:column>
+                    <p:column headerText="Editar">
+                        <p:commandButton value="Editar" actionListener="#{generoBean.cargarId(g)}" update=":da" oncomplete="PF('genero').show()"/>
+                    </p:column>
+                    <p:ajax event="rowSelect" listener="#{generoBean.onRowSelect}" update=":da" oncomplete="PF('genero').show()"/>
+                    <p:ajax event="rowUnselect" listener="#{generoBean.onRowDeselect}" update=":da"/>
                 </p:dataTable>
                     
                 

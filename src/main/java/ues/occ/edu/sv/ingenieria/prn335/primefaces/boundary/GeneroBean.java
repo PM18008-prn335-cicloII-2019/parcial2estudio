@@ -66,6 +66,11 @@ public class GeneroBean extends BackingBean<Genero> implements Serializable{
         }
     }
     
+    public void cargarId(Genero g){
+        this.genero = g;
+        System.out.print(g.getIdGenero());
+    }
+    
     
 
     @Override
