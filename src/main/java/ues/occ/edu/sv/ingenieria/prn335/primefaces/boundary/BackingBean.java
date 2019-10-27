@@ -56,7 +56,7 @@ public abstract class BackingBean<T> {
         iniciar();
     }
 
-    public void btnAgregarHandler() {
+    public void btnAgregarHandler(ActionEvent ae) {
         if (registro != null) {
             getFacade().create(registro);
             iniciar();

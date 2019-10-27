@@ -113,13 +113,7 @@ public class GeneroBean extends BackingBean<Genero> implements Serializable{
         return super.getRegistro(); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void btnAgregarHandler() {
-        
-        Generofacade.create(registro);
-        
-        
-    }
+   
 
 
   

@@ -20,21 +20,23 @@
             <h:form id="da">
                 <p:panelGrid columns="2">
                     <p:outputLabel value="ID" for="txtId"/>
-                    <p:inputNumber id="txtId" value="#{generoBean.genero.idGenero}" disabled="false" decimalPlaces="0"/>
+                    <p:inputNumber id="txtId" value="#{generoBean.registro.idGenero}" disabled="false" decimalPlaces="0"/>
                     <p:outputLabel value="Nombre" for="txtNombre"/>
-                    <p:inputText id="txtNombre" value="#{generoBean.genero.nombre}" required="true"/>
+                    <p:inputText id="txtNombre" value="#{generoBean.registro.nombre}" required="true"/>
                     <p:outputLabel value="Descripcion" for="txtDescripcion"/>
-                    <p:inputTextarea id="txtDescripcion" value="#{generoBean.genero.descripcion}" required="true"/>
+                    <p:inputTextarea id="txtDescripcion" value="#{generoBean.registro.descripcion}" required="true"/>
                     <p:outputLabel value="Activo" for="chActivo"/>
-                    <p:selectBooleanCheckbox id="chActivo" value="#{generoBean.genero.activo}"/>
-                    <p:commandButton value="Guardar" actionListener="#{generoBean.btnAgregarHandler}" update=":Datos da :MSJ"
-                                     oncomplete="PF('genero').hide()"/>
+                    <p:selectBooleanCheckbox id="chActivo" value="#{generoBean.registro.activo}"/>
                 </p:panelGrid>
+                <p:commandButton value="Guardar" actionListener="#{generoBean.btnAgregarHandler}" rendered="#{empty generoBean.registro.idGenero}" 
+                                 update=":Datos da :MSJ" oncomplete="PF('genero').hide()"/>
             </h:form>    
             </p:dialog>
         <h:form id="Datos">
             <p:fieldset legend="Datos genero" toggleable="true">
-                <p:dataTable value="#{generoBean.generoList}" var="g">
+                <p:dataTable var="g" value="#{generoBean.modelo}" paginator="true" rows="5" paginatorPosition="bottom" 
+                             selectionMode="single" id="Genero" lazy="true" selection="#{generoBean.registro}" 
+                             rendered="#{not empty generoBean.modelo}">>
                     <p:column headerText="Id">
                         <h:outputText value="#{g.idGenero}"/>
                     </p:column>
