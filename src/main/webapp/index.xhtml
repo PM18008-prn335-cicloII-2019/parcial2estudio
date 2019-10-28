@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:rs="http://xmlns.jcp.org/jsf/composite/components">
     <h:head>
         <title>Facelet Title</title>
         <h:outputStylesheet name="css/estilos.css"/>
@@ -28,8 +29,8 @@
                     <p:outputLabel value="Activo" for="chActivo"/>
                     <p:selectBooleanCheckbox id="chActivo" value="#{generoBean.registro.activo}"/>
                 </p:panelGrid>
-                <p:commandButton value="Guardar" actionListener="#{generoBean.btnAgregarHandler}" rendered="#{empty generoBean.registro.idGenero}" 
-                                 update=":Datos da :MSJ" oncomplete="PF('genero').hide()"/>
+                <rs:AbstractButtons backinBean="#{generoBean}" idbackingBean="#{generoBean.registro.idGenero}"/>
+                
             </h:form>    
             </p:dialog>
         <h:form id="Datos">
@@ -48,9 +49,6 @@
                     </p:column>
                     <p:column headerText="Activo">
                         <h:outputText value="#{g.activo?'Activo':'Inactivo'}"/>
-                    </p:column>
-                    <p:column headerText="Editar">
-                        <p:commandButton value="Editar" actionListener="#{generoBean.cargarId(g)}" update=":da" oncomplete="PF('genero').show()"/>
                     </p:column>
                     <p:ajax event="rowSelect" listener="#{generoBean.onRowSelect}" update=":da" oncomplete="PF('genero').show()"/>
                     <p:ajax event="rowUnselect" listener="#{generoBean.onRowDeselect}" update=":da"/>
