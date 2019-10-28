@@ -15,10 +15,10 @@
     <!-- IMPLEMENTATION -->
     <cc:implementation>
         <h:panelGroup id="botones">
-            <p:commandButton value="Crear" update="#{cc.attrs.update}" actionListener="#{cc.attrs.backinBean.btnAgregarHandler}"/>
-            <p:commandButton value="Actualizar" update="#{cc.attrs.update}" actionListener="#{cc.attrs.backinBean.btnEditarHandler}" rendered="#{cc.attrs.idbackingBean != null}"/>
-            <p:commandButton value="Borrar" update="#{cc.attrs.update}" actionListener="#{cc.attrs.backinBean.btnEliminarHandler}" rendered="#{cc.attrs.idbackingBean != null}"/>
-            <p:commandButton value="Cancelar" update="#{cc.attrs.update}" actionListener="#{cc.attrs.backinBean.btnCancelarHandler}" />
+            <p:commandButton value="#{proGen['crud.create.title']}" update="#{cc.attrs.update}" actionListener="#{cc.attrs.backinBean.btnAgregarHandler}"/>
+            <p:commandButton value="#{proGen['crud.edit.title']}" update="#{cc.attrs.update}" actionListener="#{cc.attrs.backinBean.btnEditarHandler}" rendered="#{cc.attrs.idbackingBean != null}"/>
+            <p:commandButton value="#{proGen['crud.remove.title']}" update="#{cc.attrs.update}" actionListener="#{cc.attrs.backinBean.btnEliminarHandler}" rendered="#{cc.attrs.idbackingBean != null}"/>
+            <p:commandButton value="#{proGen['crud.cancel.title']}" update="#{cc.attrs.update}" actionListener="#{cc.attrs.backinBean.btnCancelarHandler}" />
         </h:panelGroup>
     </cc:implementation>
 </html>

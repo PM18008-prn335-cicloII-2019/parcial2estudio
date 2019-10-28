@@ -1,32 +1,31 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:rs="http://xmlns.jcp.org/jsf/composite/components">
-    <h:head>
-        <title>Facelet Title</title>
-        <h:outputStylesheet name="css/estilos.css"/>
-    </h:head>
-    <h:body>
+<ui:composition template="/resources/template/EntitiesTemplate.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:rs="http://xmlns.jcp.org/jsf/composite/components">
+    <ui:define name="encabezado">#{idGen['genero.title']}</ui:define>
+    <ui:define name="content">
         <p:growl id="MSJ"/>
         <h:form id="f">
-            <p:fieldset legend="Nuevo" toggleable="true">
+            <p:fieldset legend="#{proGen['crud.new.title']}" toggleable="true">
                 <p:panelGrid columns="1">
-                    <p:commandButton value="Nuevo Genero" oncomplete="PF('genero').show()"/>
+                    <p:commandButton value="#{proGen['crud.newGenre.title']}" oncomplete="PF('genero').show()"/>
                 </p:panelGrid>
             </p:fieldset>
         </h:form>
-        <p:dialog widgetVar="genero" modal="true" showEffect="clip" resizable="false" header="Genero">
+        <p:dialog widgetVar="genero" modal="true" showEffect="clip" resizable="false" header="#{idGen['genero.title']}">
             <h:form id="da">
                 <p:panelGrid columns="2">
-                    <p:outputLabel value="ID" for="txtId"/>
+                    <p:outputLabel value="#{idGen['genero.id']}" for="txtId"/>
                     <p:inputNumber id="txtId" value="#{generoBean.registro.idGenero}" disabled="false" decimalPlaces="0"/>
-                    <p:outputLabel value="Nombre" for="txtNombre"/>
+                    <p:outputLabel value="#{idGen['genero.nombre']}" for="txtNombre"/>
                     <p:inputText id="txtNombre" value="#{generoBean.registro.nombre}" required="true"/>
-                    <p:outputLabel value="Descripcion" for="txtDescripcion"/>
+                    <p:outputLabel value="#{idGen['genero.descripcion']}" for="txtDescripcion"/>
                     <p:inputTextarea id="txtDescripcion" value="#{generoBean.registro.descripcion}" required="true"/>
-                    <p:outputLabel value="Activo" for="chActivo"/>
+                    <p:outputLabel value="#{idGen['genero.activo']}" for="chActivo"/>
                     <p:selectBooleanCheckbox id="chActivo" value="#{generoBean.registro.activo}"/>
                 </p:panelGrid>
                 <rs:AbstractButtons backinBean="#{generoBean}" idbackingBean="#{generoBean.registro.idGenero}"/>
@@ -38,16 +37,16 @@
                 <p:dataTable var="g" value="#{generoBean.modelo}" paginator="true" rows="5" paginatorPosition="bottom" 
                              selectionMode="single" id="Genero" lazy="true" selection="#{generoBean.registro}" 
                              rendered="#{not empty generoBean.modelo}">>
-                    <p:column headerText="Id">
+                    <p:column headerText="#{idGen['genero.id']}">
                         <h:outputText value="#{g.idGenero}"/>
                     </p:column>
-                    <p:column headerText="Nombre">
+                    <p:column headerText="#{idGen['genero.nombre']}">
                         <h:outputText value="#{g.nombre}"/>
                     </p:column>
-                    <p:column headerText="Descripcion">
+                    <p:column headerText="#{idGen['genero.descripcion']}">
                         <h:outputText value="#{g.descripcion}"/>
                     </p:column>
-                    <p:column headerText="Activo">
+                    <p:column headerText="#{idGen['genero.activo']}">
                         <h:outputText value="#{g.activo?'Activo':'Inactivo'}"/>
                     </p:column>
                     <p:ajax event="rowSelect" listener="#{generoBean.onRowSelect}" update=":da" oncomplete="PF('genero').show()"/>
@@ -57,7 +56,7 @@
                 
             </p:fieldset>
         </h:form>
-    </h:body>
+    </ui:define>
 
-</html>
+</ui:composition>
 
